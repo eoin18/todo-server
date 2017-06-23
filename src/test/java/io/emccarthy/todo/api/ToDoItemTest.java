@@ -48,6 +48,7 @@ public class ToDoItemTest {
         assertNotSame(this.instanceOne, clone);
         assertEquals(this.instanceOne, clone);
         assertEquals(this.instanceOne.hashCode(), clone.hashCode());
+        assertEquals(this.instanceOne.toString(), clone.toString());
     }
 
     @Test
