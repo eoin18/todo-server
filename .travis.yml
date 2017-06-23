@@ -4,7 +4,7 @@ jdk:
 before_install:
   - chmod +x gradlew
 script:
-  - gradle check
-  - gradle jacocoTestReport
+  - ./gradlew check
+  - ./gradlew jacocoTestReport
 after_success:
   - bash <(curl -s https://codecov.io/bash)
