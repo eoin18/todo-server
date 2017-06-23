@@ -13,6 +13,11 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+}
 
 mainClassName = 'io.emccarthy.todo.ToDoApplication'
 
@@ -29,4 +34,20 @@ dependencies {
     testCompile group: 'io.dropwizard', name:'dropwizard-testing', version: this.properties['dropwizard.version']
     compile group: 'io.dropwizard', name:'dropwizard-core', version: this.properties['dropwizard.version']
     compile group: 'org.mongodb', name:'mongodb-driver', version: '3.2.2'
+}
+
+test {
+    jacoco {
+        append = true
+        destinationFile = file("${buildDir}/jacoco/jacoco.exec")
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        xml.destination "${buildDir}/reports/jacoco/report.xml"
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacoco/report.html"
+    }
 }
